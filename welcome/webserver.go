@@ -1,6 +1,4 @@
-// BASIC WEB SERVICE
-
-// Author: Nitin Jilla
+// basic webserver
 
 package main
 
@@ -16,7 +14,7 @@ import (
 )
 
 var port string = ":8000"
-var version string = "v1.1"
+var version string = "v1"
 
 func main() {
 
@@ -30,9 +28,10 @@ func main() {
 	signal.Notify(c, os.Interrupt)
 
 	r.HandleFunc("/", homePage)
-
+	log.Printf("Started webserver on port %s", port[1:])
 	go func() {
 		err := srv.ListenAndServe()
+		
 		if err != nil {
 			log.Println(err)
 		}
